@@ -1,4 +1,4 @@
-package org.example.task3;
+package org.example.lecture1.task3;
 
 public class User {
     String name;
