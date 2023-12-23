@@ -26,8 +26,8 @@ public class Main {
         }
         tx.commit();
 
-        Query query = session.createQuery("FROM book WHERE author =:authorName");
-        query.setParameter("authorName", "Author 5");
+        Query query = session.createQuery("FROM Book WHERE author = :authorName");
+        query.setParameter("authorName", "Author5");
         List<Book> books = query.getResultList();
         for (Book book : books) {
             System.out.println("ID: " + book.getId() + ", Name: " + book.getName() + ", Author: " + book.getAuthor());
