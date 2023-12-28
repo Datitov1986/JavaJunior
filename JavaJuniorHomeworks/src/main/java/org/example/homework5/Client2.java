@@ -1,4 +1,4 @@
-package org.example.lesson5;
+package org.example.homework5;
 
 import java.io.IOException;
 import java.io.PrintWriter;

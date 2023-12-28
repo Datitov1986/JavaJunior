@@ -1,7 +1,6 @@
-package org.example.lesson5;
+package org.example.homework5;
 
 import lombok.Getter;
-import lombok.ToString;
 
 import java.io.IOException;
 import java.io.PrintWriter;
