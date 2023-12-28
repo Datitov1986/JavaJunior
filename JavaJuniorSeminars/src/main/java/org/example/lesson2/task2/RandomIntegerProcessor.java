@@ -1,2 +1,27 @@
-package org.example.lesson2.task2;public interface RandomIntegerProcessor {
+package org.example.lesson2.task2;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class RandomIntegerProcessor {
+
+    public static void processObject(Object object) {
+        Class<?> objClass = object.getClass();
+        for (Field declaredField : objClass.getDeclaredFields()) {
+            if (int.class.isAssignableFrom(declaredField.getType()) && declaredField.isAnnotationPresent(RandomInteger.class)) {
+                RandomInteger annotation = declaredField.getAnnotation(RandomInteger.class);
+                int minValue = annotation.minValue();
+                int maxValue = annotation.maxValue();
+
+                // [4,7] => 4 + (0,3)
+                int randomValue = minValue + ThreadLocalRandom.current().nextInt(maxValue - minValue);
+                declaredField.setAccessible(true);
+                try {
+                    declaredField.set(object, randomValue);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e.getMessage(), e);
+                }
+            }
+        }
+    }
 }
